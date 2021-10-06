@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <title>Assignment 6</title>
-    <h1>pass pharse by Prachod Elisetti</h1>
- 
+ <head>
+     <title>Assignment-6</title>
+     <h1>Pass phrase by Elisetti Prachod</h1>
+    <style>
+        form{
+            background-color: hotpink;
+            border: solid blue;
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
 <body>
+    <form>
+        <label for="form1_age">Enter the secret phrase </label>
+        <input type ="password" id="secret_phrase" name="form1_age" value="Let me in"> <br>
+    
+        <label for="form1_nick">Enter a phrase </label>
+        <input type ="text" id="phrase" name="form1_nick" autofocus> <br>
+    
+        <input type="button" onclick="processPhrase()" value="Check the phrase">
+    </form>
+    <div class="container">
+        <img src="snake.jpg" id="image" class="img-fluid" alt="snake" height="200" width="200" onclick=newImage()>
+    </div>
+    <script> 
 
-<h2>Getting input</h2>
+        var correct=0
+        var wrong=0
+        
+        function processPhrase (){
+            console.log("Getting form values")
+            sphrase = document.getElementById("secret_phrase").value
+            phrase = document.getElementById("phrase").value
+            
+            out = document.getElementById("result")
+            if(sphrase == phrase){
+                correct = correct +1
+                alert("Access allowed")
+                out.innerHTML = "Correct:" +correct
+            } else {
+                wrong = wrong +1
+                alert("Access denied")
+                out.innerHTML = "Wrong:" +wrong
+                if (wrong>3){
+                    alert("account locked");
+                }
+            }
+        }
+        </script>
 
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+<p id="result">Wrong: </p>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
 
 <script> 
+var correct=0
+var wrong=0
 
 function resolveForm (){
     console.log("Getting form values")
@@ -35,7 +73,28 @@ function resolveForm (){
         out.innerHTML = "Values were not confirmed"
     }
 }
+var currentimage = 1;
+
+function newImage() {
+        switch (currentimage) {
+            case 0:
+                currentImage = currentimage + 1;
+                document.getElementById("image").src = "snake.jpg"
+                break;
+            case 1:
+                currentimage += 1;
+                document.getElementById("image").src = "tiger.jpg"
+                break;
+            case 2:
+                currentimage += 1;
+                document.getElementById("image").src = "lion.jpeg"
+                break;
+            default:
+                currentimage = 1
+                document.getElementById("image").src = "snake.jpg"
+        }
+    }
 </script>
 
 </body>
-</html> 
+</html>
